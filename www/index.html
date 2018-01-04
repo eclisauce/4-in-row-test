@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html lang="sv">
-  <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
 
-    <!-- Bootstrap CSS -->
-    <!--<link rel="stylesheet" href="/css/libs/bootstrap-4-beta.css">-->
-    <!-- Application specific CSS -->
-    <link rel="stylesheet" href="/css/main.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  </head>
-  <body>
-    <h4>It's <span id="player">Red</span>'s turn!</h4>
-    <div id="connect4"></div>
-    <br>
-    <button id="restart">Restart</button>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/libs/bootstrap-4-beta.css">
+  <!-- Application specific CSS -->
+  <link rel="stylesheet" href="/css/main.css">
 
-    <!-- JavaScript libraries -->
-    <script src="/jsonflex.js"></script>
-    <script src="/js/libs/jquery-3.2.1.js"></script>
-    <!--<script src="/js/libs/popper-1.11.0.js"></script>
-    <script src="/js/libs/bootstrap-4-beta.js"></script>-->
-    <!-- Application specific JavaScript -->
-    <script src="/js/classes/connect4.class.js"></script>
-    <script src="/js/main.js"></script>
-  </body>
+</head>
+
+<body>
+  <div class="container">
+    <h4>It's <span id="player">red</span>'s turn!</h4>
+    <div class="row justify-content-center">
+      <div class="col-6" id="connect4"></div>
+    </div>
+    <div class="row mt-2 justify-content-center">
+      <button id="restart">Restart</button>
+    </div>
+  </div>
+
+  <!-- JavaScript libraries -->
+  <script src="/jsonflex.js"></script>
+  <script src="/js/libs/jquery-3.2.1.js"></script>
+  <script src="/js/libs/popper-1.11.0.js"></script>
+  <script src="/js/libs/bootstrap-4-beta.js"></script>
+  <!-- Application specific JavaScript -->
+  <script src="/js/classes/connect4.class.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+
 </html>
