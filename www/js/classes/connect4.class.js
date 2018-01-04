@@ -57,8 +57,12 @@ class Connect4 {
       $lastEmptyCell.addClass(that.player);
       $lastEmptyCell.data('player', that.player);
 
-      const winner = that.checkForWinner(row, col)
+      const winner = that.checkForWinner(
+        $lastEmptyCell.data('row'),
+        $lastEmptyCell.data('col')
+      )
       if (winner){
+
         alert(`Game over ! Player ${that.player} has won!`);
         return;
       }
@@ -90,6 +94,7 @@ class Connect4 {
         j += direction.j;
         $next = $getCell(i, j);
       }
+      return total;
     }
 
 
@@ -108,9 +113,24 @@ class Connect4 {
       return checkWin({i: -1, j: 0}, {i: 1, j: 0});
     }
 
+    function checkHorizontals(){
+      return checkWin({i: 0, j: -1}, {i: 0, j: 1});
+    }
+
+    function checkDiagonalBLtoTR(){
+      return checkWin({i: 1, j: -1}, {i: 1, j: 1});
+    }
+
+    function checkDiagonalTRtoBL(){
+      return checkWin({i: 1, j: 1}, {i: -1, j: -1});
+    }
 
 
-    return checkVerticals();
+
+    return checkVerticals() ||
+    checkHorizontals() ||
+    checkDiagonalBLtoTR() ||
+    checkDiagonalTRtoBL();
   }
 
 }
