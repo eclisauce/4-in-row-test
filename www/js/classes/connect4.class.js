@@ -3,6 +3,8 @@ class Connect4 {
     this.ROWS = 6;
     this.COLS = 7;
     this.selector = selector;
+    this.isGameOver = false;
+    this.onPlayerMove = function() {};
     this.player = 'red';
     this.createGrid();
     this.setupEventListeners();
@@ -10,6 +12,9 @@ class Connect4 {
 
   createGrid() {
     const $board = $(this.selector);
+    $board.empty();
+    this.isGameOver = false;
+    this.player = 'red';
     for (let row = 0; row < this.ROWS; row++) {
       const $row = $('<div>').addClass('row');
       for (let col = 0; col < this.COLS; col++) {
@@ -40,6 +45,7 @@ class Connect4 {
 
 
     $board.on('mouseenter', '.col.empty', function(){
+      if (that.isGameOver) return;
       const col = $(this).data('col');
       const $lastEmptyCell = findLastEmptyCell(col);
       $lastEmptyCell.addClass(`next-${that.player}`);
@@ -50,6 +56,7 @@ class Connect4 {
     });
 
     $board.on('click', '.col.empty', function(){
+      if (that.isGameOver) return;
       const col = $(this).data('col');
       const row = $(this).data('row');
       const $lastEmptyCell = findLastEmptyCell(col);
@@ -62,12 +69,14 @@ class Connect4 {
         $lastEmptyCell.data('col')
       )
       if (winner){
-
+        that.isGameOver = true;
         alert(`Game over ! Player ${that.player} has won!`);
+        $('.col.empty').removeClass('empty');
         return;
       }
 
       that.player = (that.player === 'red') ? 'black' : 'red';
+      that.onPlayerMove();
       $(this).trigger('mouseenter');
     });
   }
@@ -131,6 +140,11 @@ class Connect4 {
     checkHorizontals() ||
     checkDiagonalBLtoTR() ||
     checkDiagonalTRtoBL();
+  }
+
+  restart(){
+    this.createGrid();
+    this.onPlayerMove();
   }
 
 }
